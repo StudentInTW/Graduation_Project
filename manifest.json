@@ -1,0 +1,58 @@
+{
+  "manifest_version": 3,
+  "name": "Contextual Learning Extension",
+  "version": "1.0",
+  "description": "Helps users understand unfamiliar words and sentences while reading online.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "webNavigation",
+    "alarms",
+    "tabs"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*",
+    "https://archive.org/*",
+    "http://localhost:3000/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*",
+        "https://archive.org/*",
+        "<all_urls>"
+      ],
+      "js": ["content.js"],
+      "all_frames": true,
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "d3.min.js",
+        "mermaid.min.js",
+        "sidebar.html",
+        "styles.css"
+      ],
+      "matches": ["http://*/*", "https://*/*", "https://archive.org/*"]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+  }
+}

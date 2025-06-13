@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning History Timeline</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-color: #f8f9fa;
+      }
+      h2 {
+        margin-bottom: 15px;
+      }
+      .book-card {
+        background: white;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .book-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .book-header h3 {
+        margin: 0;
+      }
+      .book-stats {
+        font-size: 0.85em;
+        color: #555;
+      }
+      .book-buttons button {
+        margin-left: 10px;
+        padding: 5px 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .book-buttons button:hover {
+        background-color: #0056b3;
+      }
+      .delete-btn,
+      .delete-record-btn,
+      .batch-delete-btn {
+        background-color: #dc3545;
+      }
+      .delete-btn:hover,
+      .delete-record-btn:hover,
+      .batch-delete-btn:hover {
+        background-color: #c82333;
+      }
+      .details-container {
+        display: none;
+      }
+      .details-container.active {
+        display: block;
+      }
+      .export-btn,
+      .back-btn,
+      .batch-delete-btn {
+        margin-top: 10px;
+        margin-right: 5px;
+        padding: 5px 10px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .export-btn:hover,
+      .back-btn:hover {
+        background-color: #218838;
+      }
+      .mini-mermaid {
+        width: 100%;
+        overflow: hidden;
+      }
+      .mini-mermaid svg {
+        width: 100%;
+        height: auto;
+      }
+      .timeline-entry,
+      .knowledge-card {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background: white;
+      }
+      .record-actions {
+        display: flex;
+        gap: 5px;
+        margin-top: 5px;
+      }
+      .record-actions input[type="checkbox"] {
+        margin-right: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>📚 Your Learning Books</h2>
+
+    <!-- 書籍清單 -->
+    <div id="bookList"></div>
+
+    <!-- 詳細檢視區 -->
+    <div id="detailsContainer" class="details-container">
+      <button id="backToListBtn" class="back-btn">⬅️ Back to Book List</button>
+      <h3 id="bookTitleDetails"></h3>
+      <p>Author: <span id="bookAuthorDetails"></span></p>
+      <p>Update time: <span id="bookUpdatedAt"></span></p>
+      <button id="timelineViewBtn">🕰️ Timeline View</button>
+      <button id="knowledgeViewBtn">🧠 Knowledge View</button>
+      <button id="exportCSVBtn" class="export-btn">📥 Export CSV</button>
+      <button id="exportPDFBtn" class="export-btn">📥 Export PDF</button>
+      <button id="batchDeleteBtn" class="batch-delete-btn">
+        🗑️ Batch Delete
+      </button>
+      <div id="recordContainer"></div>
+    </div>
+
+    <!-- 全螢幕邏輯圖 Modal -->
+    <div
+      id="fullLogicMapModal"
+      style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: white;
+        overflow: auto;
+        z-index: 9999;
+        padding: 20px;
+      "
+    >
+      <button
+        id="closeModal"
+        style="position: absolute; top: 10px; right: 10px"
+      >
+        ❌ Close
+      </button>
+      <div
+        id="fullLogicMapContainer"
+        class="mermaid"
+        style="margin-top: 50px"
+      ></div>
+    </div>
+
+    <script src="mermaid.min.js"></script>
+    <script src="review.js"></script>
+  </body>
+</html>

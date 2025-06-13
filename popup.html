@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Contexual Learning Extension</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 10px;
+        width: 400px;
+        background-color: #f8f9fa;
+      }
+      .option-btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .option-btn:hover {
+        background-color: #0056b3;
+      }
+      #newBookForm,
+      #existingBookList {
+        display: none;
+        margin-top: 10px;
+      }
+      #newBookForm input {
+        display: block;
+        width: 90%;
+        margin: 5px 0;
+        padding: 5px;
+      }
+      #newBookForm button {
+        padding: 5px 10px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      #existingBookList select {
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 10px;
+      }
+      #existingBookList button {
+        padding: 5px 10px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      #noRecordWarning {
+        display: none;
+        color: #dc3545;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>English Reading Helper</h1>
+    <button id="newBookBtn" class="option-btn">📖 Read a new book</button>
+    <button id="existingBookBtn" class="option-btn">
+      📚 Read existing book
+    </button>
+    <button id="noRecordBtn" class="option-btn">
+      👀 Just read without recording
+    </button>
+
+    <div id="newBookForm">
+      <label for="bookTitle">Book name：</label>
+      <input type="text" id="bookTitle" required />
+      <label for="bookAuthor">Author：</label>
+      <input type="text" id="bookAuthor" required />
+      <button id="submitNewBook">✅ Confirm</button>
+    </div>
+
+    <div id="existingBookList">
+      <select id="bookSelect"></select>
+      <button id="selectBook">✅ Choose</button>
+    </div>
+
+    <div id="noRecordWarning">⚠️ Anything you do won't be recorded.</div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
