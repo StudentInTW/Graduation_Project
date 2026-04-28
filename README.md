@@ -17,11 +17,34 @@ This Chrome extension enhances the reading experience on [archive.org](https://a
 ## 📂 Project Architecture
 This project is built using JavaScript and Chrome's Web Extensions API. The logic is cleanly separated into three main components:
 
+## 📂 專案架構 (Project Architecture)
+本專案的架構設計涵蓋了完整的 Chrome Extension 生命週期與多個 UI 視圖，並整合了資料視覺化套件。主要檔案結構如下：
+
 ```text
-├── background.js   # Manages communication between content script, sidebar, and Chrome APIs
-├── content.js      # Injected into archive.org to handle text selection and highlight logic
-├── sidebar.js      # Renders the UI and manages the display/clearing of highlight data
-└── manifest.json   # Chrome extension configuration and permissions
+├── 核心設定與管理
+│   ├── manifest.json        # Chrome 擴充功能核心權限與註冊檔
+│   ├── package.json         # NPM 專案依賴與腳本設定
+│   └── .gitignore           # Git 忽略規則 (排除 node_modules 等)
+│
+├── 背景與網頁腳本 (Extension Core)
+│   ├── background.js        # Service Worker: 負責跨元件通訊與 API 狀態管理
+│   ├── content.js           # 注入網頁的腳本: 處理 DOM 選取、反白邏輯與浮動 UI
+│   └── learningStorage.js   # 狀態管理模組: 處理 highlight 資料的儲存與讀取
+│
+├── 使用者介面 (User Interfaces)
+│   ├── sidebar.html / .js   # 側邊欄視圖: 顯示與管理所有標註內容
+│   ├── popup.html / .js     # 彈出視窗視圖: 擴充功能選單與快捷操作
+│   ├── review.html / .js    # 複習視圖: 專屬的標註回顧與學習頁面
+│   └── styles.css           # 專案共用樣式表
+│
+├── 外部函式庫 (Libraries)
+│   ├── d3.min.js            # 處理資料視覺化與統計圖表
+│   └── mermaid.min.js       # 渲染流程圖與心智圖
+│
+├── 後端服務 (Backend Service)
+│   └── server.js            # 本地 Node.js 伺服器 (用於處理 API 請求或資料庫溝通)
+│
+└── icons/                   # 擴充功能各尺寸圖示集
 ```
 
 ## 🚀 Installation & Setup
