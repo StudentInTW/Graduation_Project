@@ -17,8 +17,6 @@ This Chrome extension enhances the reading experience on [archive.org](https://a
 ## 📂 Project Architecture
 This project is built using JavaScript and Chrome's Web Extensions API. The logic is cleanly separated into three main components:
 
-## 📂 專案架構 (Project Architecture)
-本專案的架構設計涵蓋了完整的 Chrome Extension 生命週期與多個 UI 視圖，並整合了資料視覺化套件。主要檔案結構如下：
 
 ```text
 ├── 核心設定與管理
